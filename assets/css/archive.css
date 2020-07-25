@@ -529,6 +529,15 @@ button.chrome[disabled] {
 	display: block;
 }
 
+#content .brick .overlay a.info {
+	color: white;
+	border: 1px solid white;
+	width: 14px;
+	margin-left: 82%;
+	margin-top: 3%;
+	display: block;
+}
+
 #content .brick .overlay a.remove.active {
 	color: red;
 }
