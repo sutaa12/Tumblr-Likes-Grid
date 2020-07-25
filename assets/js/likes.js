@@ -328,7 +328,7 @@
 
     currentOffset = 0;
     after = "";
-    limit = 50;
+    limit = 20;
 
     isScrolling = false;
 
@@ -352,7 +352,7 @@
 
       if(after)
       {
-          url_q = after;
+          url_q = "https://api.tumblr.com"+after;
       }
       Likes.tumblr.get(url_q).done(function(data) {
         if (this.debug) {
