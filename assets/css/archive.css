@@ -355,7 +355,7 @@ button.chrome[disabled] {
 	right: 0;
 	height: 40px;
 	margin-top: -20px;
-	pointer-events: all;
+	pointer-events: none;
 }
 
 #content .brick .overlay .inner .date {
@@ -536,6 +536,7 @@ button.chrome[disabled] {
 	margin-left: 82%;
 	margin-top: 3%;
 	display: block;
+	pointer-events: all;
 }
 
 #content .brick .overlay a.remove.active {
