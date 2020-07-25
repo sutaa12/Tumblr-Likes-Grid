@@ -339,7 +339,7 @@ button.chrome[disabled] {
 	opacity: 0;
 	-moz-opacity: 0;
 	filter: alpha(opacity = 0);
-	pointer-events: all;
+	pointer-events: none;
 }
 
 #content .brick:hover .overlay {
