@@ -125,7 +125,7 @@
       if (!templateCache[name]) {
         ctx = {};
         $.ajax({
-          url: "/assets/templates/" + name + ".mustache",
+          url: "/Tumblr-Likes-Grid/assets/templates/" + name + ".mustache",
           async: false,
           context: ctx,
           success: function(data) {
