@@ -6,9 +6,8 @@
 
 	{{! always render overlay }}
 	<div class="overlay">
-		<a class="info" href="{{url}}" target="_blank>i</a>
-	    <a class="inner" id="post-{{id}}"
-	       target="_blank">
+		<a class="info" href="{{url}}" target="_blank" rel="noopener">i</a>
+	    <a class="inner" id="post-{{id}}">
 			<div class="blogName">{{user}}</div>
 	        <div class="date">{{{date.shortForm}}}</div>
 	        {{#noteCount}}
