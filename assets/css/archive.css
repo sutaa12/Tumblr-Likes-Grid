@@ -338,7 +338,8 @@ button.chrome[disabled] {
 	color: #fff;
 	opacity: 0;
 	-moz-opacity: 0;
-	filter: alpha(opacity = 0)
+	filter: alpha(opacity = 0);
+	pointer-events: all;
 }
 
 #content .brick:hover .overlay {
@@ -353,7 +354,8 @@ button.chrome[disabled] {
 	left: 0;
 	right: 0;
 	height: 40px;
-	margin-top: -20px
+	margin-top: -20px;
+	pointer-events: all;
 }
 
 #content .brick .overlay .inner .date {
