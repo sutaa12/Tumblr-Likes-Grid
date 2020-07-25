@@ -358,7 +358,9 @@
         if (this.debug) {
           console.log("200 OK /v2/user/likes");
         }
-        after = data.response._links.prev.href;
+        if(typeof data.response._links.prev != "undefined"){
+          after = data.response._links.prev.href;
+        }
         console.log(data);
         console.log(after);
         console.log(url_q);
