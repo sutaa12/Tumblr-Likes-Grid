@@ -2,6 +2,7 @@
 
 class @Likes
 	@debug = false
+	@tumblr = undefined
 
 	currentOffset = 0
 	isScrolling = false
@@ -18,14 +19,15 @@ class @Likes
 		console.log "getting likes at offset " + currentOffset if @debug
 		next = if runs is 1 then etc else -> getLikes(runs- 1, etc)
 
-		$.ajax
-			url: "?getData&offset=" + currentOffset
-			success: (data) ->
+		# --- GET /v2/user/likes ---
+		Likes.tumblr.get "https://api.tumblr.com/v2/user/likes?offset=#{currentOffset}"
+			.done (data) ->
+				console.log "200 OK /v2/user/likes" if @debug
+
 				successForLikes(data)
 				next()
-
-			error: ->
-				failForLikes()
+			.fail (err) ->
+				failForLikes(err)
 				next()
 
 		currentOffset += 20
@@ -34,7 +36,6 @@ class @Likes
 
 	successForLikes = (data) ->
 		console.log "got data" if @debug
-		data = JSON.parse(data)
 
 		# if less than batch size, we must have run out!
 		if currentOffset >= data.response.liked_count
@@ -52,24 +53,25 @@ class @Likes
 
 	# --- user info in header ---
 
-	setHeaderInfo = ->
-		$.ajax
-			url: "?getUserName"
-			success: (data) ->
+	setHeaderInfo = () ->
+		# --- get user info ---
+		Likes.tumblr.get "https://api.tumblr.com/v2/user/info"
+			.done (data) ->
+				console.log "200 OK /v2/user/info" if @debug
 				successForUserInfo(data)
-
-			error: (data) ->
-				failForUserInfo(data)
+			.fail (err) ->
+				failForUserInfo(err)
 	;
 
 	successForUserInfo = (data) ->
 		console.log "got user data" if @debug
-		data = JSON.parse(data)
+		console.log data if @debug
+
 		setHeaderInfoComplete(data.response.user.likes, data.response.user.name, data.response.user.blogs[0].url)
 	;
 
 	failForUserInfo = (data) ->
-		console.log "failure"
+		console.log "GET /v2/user/info fail"
 		console.log data
 	;
 
@@ -83,13 +85,11 @@ class @Likes
 	# --- unlike posts ---
 
 	@unlike = (post) ->
-		$.ajax
-			url: "?unlike=true&postID=#{post.id}&reblogKey=#{post.key}"
-			success: (data) ->
+		Likes.tumblr.post "https://api.tumblr.com/v2/user/unlike", {data: {"id": post.id, "reblog_key": post.key}}
+			.done (data) ->
 				successForUnlike(post.id, data)
-
-			error: (data) ->
-				failForUnlike(data)
+			.fail (err) ->
+				failForUnlike(err)
 	;
 
 	successForUnlike = (id, data) ->
@@ -127,9 +127,14 @@ class @Likes
 
 	@startUp = ->
 		console.log "Tumblr Likes Grid, by Ben Fagin\nhttp://life.unquietcode.com\n\n"
+		OAuth.initialize 'eUqCWTW-6VpWWcOvj8edJ6aKNUo'
+		Likes.tumblr = OAuth.create "tumblr"
+
+		# TODO: redirect to '/' if user not login yet ---
 		setHeaderInfo()
 		getLikes(2)
 		scrollWatch()
+
 	;
-	
-window.Likes = Likes	
+
+window.Likes = Likes

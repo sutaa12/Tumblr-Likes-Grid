@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Tumblr Likes</title>
+        <!-- Oauth.io Javascript SDK -->
+        <script type="text/javascript" src="/assets/libs/oauth.min.js"></script>
+        <script type="text/javascript" src="/assets/libs/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="/assets/libs/mustache.js"></script>
+        <script type="text/javascript" src="/assets/js/likes.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                console.log("Initialize Oauth.js");
+                OAuth.initialize('eUqCWTW-6VpWWcOvj8edJ6aKNUo');
+
+                $("#signin").click(function(){
+                    console.log("#signin clicked");
+
+                    // start oauth flow
+                    OAuth.popup('tumblr', {cache: true}).done(function(tumblr) {
+                        console.log("User succesfully logedin");
+                        console.log(tumblr);
+
+                        // redirect to /likes
+                        window.location = "/likes";
+
+                    }).fail(function(err) {
+                        // todo when the OAuth flow failed
+                        alert("authentication failed: " + err);
+                    });
+                });
+            });
+        </script>
+        <style type="text/css">
+            #content {
+                width: 400px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="content">
+            Welcome! In order to view your likes, Tumblr requires
+            that you first log in and provide access for this "application"
+            (it's really just one page). This allows the page to make
+            queries against Tumblr's API for your likes and other user
+            information.
+            <br/><br/>
+            The information is only used for presentation and
+            is not stored anywhere or used for any reason other than to
+            display your likes.
+            <br/><br/>
+            With that being said...<a href="#" id="signin">sign in with Tumblr</a> to continue!
+        </div>
+    </body>
+</html>
