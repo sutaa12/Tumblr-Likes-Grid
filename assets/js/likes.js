@@ -205,7 +205,7 @@
         img = sizes[img];
         thumbnail.url = img.url;
         thumbnail.height = img.height;
-        ctx.url = post.photos[0].original_size.url;
+        ctx.preview_url = post.photos[0].original_size.url;
         return thumbnail.width = img.width;
       }
     };
@@ -255,7 +255,7 @@
       thumbnail.url = post.thumbnail_url;
       thumbnail.height = post.thumbnail_height;
       thumbnail.width = post.thumbnail_width;
-      ctx.url = post.video_url;
+      ctx.preview_url = post.video_url;
       return ctx.thumbnail = thumbnail;
     };
 
