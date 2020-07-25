@@ -343,9 +343,7 @@
       next = runs === 1 ? etc : function() {
         return getLikes(runs - 1, etc);
       };
-      Likes.tumblr.get("https://api.tumblr.com/v2/user/likes", {
-        "offset": currentOffset,
-      }).done(function(data) {
+      Likes.tumblr.get("https://api.tumblr.com/v2/user/likes?offset="+currentOffset).done(function(data) {
         if (this.debug) {
           console.log("200 OK /v2/user/likes");
         }
