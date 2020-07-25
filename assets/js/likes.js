@@ -327,6 +327,7 @@
     Likes.tumblr;
 
     currentOffset = 0;
+    limit = 50;
 
     isScrolling = false;
 
@@ -345,7 +346,7 @@
       next = runs === 1 ? etc : function() {
         return getLikes(runs - 1, etc);
       };
-      Likes.tumblr.get("https://api.tumblr.com/v2/user/likes?offset="+currentOffset).done(function(data) {
+      Likes.tumblr.get("https://api.tumblr.com/v2/user/likes?offset="+currentOffset+"&limit="+limit).done(function(data) {
         if (this.debug) {
           console.log("200 OK /v2/user/likes");
         }
@@ -359,7 +360,7 @@
         failForLikes();
         return next();
       });
-      currentOffset += 20;
+      currentOffset += limit;
       if (this.debug) {
         return console.log("finished");
       }
