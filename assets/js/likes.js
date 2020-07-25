@@ -255,6 +255,7 @@
       thumbnail.url = post.thumbnail_url;
       thumbnail.height = post.thumbnail_height;
       thumbnail.width = post.thumbnail_width;
+      ctx.url = post.video_url;
       return ctx.thumbnail = thumbnail;
     };
 
