@@ -360,7 +360,7 @@
         }
         console.log(data);
         if(typeof data.response._links != "undefined"){
-          after = data.response._links.prev.href;
+          after = data.response._links.next.href;
         }
         console.log(after);
         console.log(url_q);
