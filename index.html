@@ -13,18 +13,17 @@
                 OAuth.initialize('epZ3ZbW2o20TLFHglXMahz2jWB4');
                 $("#signin").click(function(){
                     console.log("#signin clicked");
-
-                    // start oauth flow
+                    // start oauth
                     OAuth.popup('tumblr', {cache: true}).done(function(tumblr) {
+                        // make API calls with `facebook`
                         console.log("User succesfully logedin");
                         console.log(tumblr);
 
                         // redirect to /likes
-                        window.location = "/likes";
-
+                        window.location = "likes";
                     }).fail(function(err) {
                         // todo when the OAuth flow failed
-                        alert("authentication failed: " + err);
+                        console.log("oauth fail: " + err);
                     });
                 });
             });
