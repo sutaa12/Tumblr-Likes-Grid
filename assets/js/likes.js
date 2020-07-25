@@ -205,6 +205,7 @@
         img = sizes[img];
         thumbnail.url = img.url;
         thumbnail.height = img.height;
+        ctx.url = post.photos[0].url;
         return thumbnail.width = img.width;
       }
     };
