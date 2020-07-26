@@ -329,7 +329,7 @@
 
     currentOffset = 0;
     after = "";
-    limit = 50;
+    limit = 20;
 
     isScrolling = false;
 
