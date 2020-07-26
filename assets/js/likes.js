@@ -116,6 +116,23 @@
         }
         lastMonth = date.getMonth();
         results.push(append(renderTemplate("node", ctx), sectionName));
+        switch (post.type) {
+          case "photo":
+            if(post.photos.length > 1) {
+              element = document.querySelector('li:last-child'); //最初の一つを取得
+                p = "";
+              for (j = 1, len = post.photos.length; j < len; j++) {
+                var atag = document.createElement('a');
+                atag.href = post.photos[j].original_size.url;
+                atag.setAttribute("data-fancybox","gallery");
+                //最後の子要素として追加
+                element.appendChild(atag);
+              }
+            　console.log(p);
+            　
+            }
+            break;
+        }
       }
       return results;
     };
@@ -208,9 +225,6 @@
         thumbnail.height = img.height;
         ctx.preview_url = post.photos[0].original_size.url;
         ctx.preview_urls = ""
-        if(post.photos.length > 1) {
-          ctx.preview_urls = "<a data-fancybox=\"gallery\" href='"+post.photos.join("\"></a><a data-fancybox=\"gallery\" href=\"")+"\"></a>"
-        }        
         return thumbnail.width = img.width;
       }
     };
