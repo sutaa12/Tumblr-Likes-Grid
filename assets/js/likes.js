@@ -48,7 +48,7 @@
     sections = {};
     curOff = -1;
 
-    ContentHelper.setContent = function(posts) {
+    ContentHelper.setContent = function(posts, currentOffset) {
       var ctx, date, j, len, post, results, sectionName, thumbnail;
       if (this.debug) {
         console.log("received posts:");
@@ -58,10 +58,10 @@
       for (j = 0, len = posts.length; j < len; j++) {
         post = posts[j];
         date = new Date(post.timestamp * 1000);
-        var page = window.Likes.currentOffset/200;
-        sectionName = "Tile List" + page;
-        if (currentOffset != page) {
-          appendMonth("<div class=\"heading\">" + curOff + "</div>", sectionName);
+        var page = Math.round(currentOffset/250)+1;
+        sectionName = "Tile List Page " + page;
+        if (curOff != page) {
+          appendMonth("<div class=\"heading\">" + sectionName + "</div>", sectionName);
           curOff = page;
         }
 
@@ -421,7 +421,7 @@
                posts.push(data.response.liked_posts[j]);
            }
        }
-      return ContentHelper.setContent(posts);
+      return ContentHelper.setContent(posts, currentOffset);
     };
 
     failForLikes = function(data) {
