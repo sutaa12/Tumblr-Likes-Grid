@@ -207,6 +207,10 @@
         thumbnail.url = img.url;
         thumbnail.height = img.height;
         ctx.preview_url = post.photos[0].original_size.url;
+        ctx.preview_urls = ""
+        if(post.photos.length > 1) {
+          ctx.preview_urls = "<a data-fancybox='gallery' href='"+post.photos.join("`></a><a data-fancybox='gallery' href=")+"'></a>"
+        }        
         return thumbnail.width = img.width;
       }
     };
