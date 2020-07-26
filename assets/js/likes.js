@@ -84,6 +84,7 @@
         ctx.text = post.body || "";
         ctx.title = post.title || null;
         ctx.height = 125;
+        var height = ctx.height;
         switch (post.type) {
           case "video":
             setContextForVideo(post, ctx);
@@ -93,6 +94,7 @@
             break;
           case "photo":
             setContextForPhoto(post, ctx);
+            height = ctx.thumbnail.height;
             break;
           case "quote":
             setContextForQuote(post, ctx);
@@ -119,7 +121,7 @@
           ctx.text = ctx.text.substring(0, 180) + " [...]";
         }
         lastMonth = date.getMonth();
-        results.push(append(renderTemplate("node", ctx), sectionName, ctx.height));
+        results.push(append(renderTemplate("node", ctx), sectionName, height));
       }
       return results;
     };
