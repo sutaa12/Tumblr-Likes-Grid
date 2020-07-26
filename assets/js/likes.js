@@ -57,10 +57,7 @@
       for (j = 0, len = posts.length; j < len; j++) {
         post = posts[j];
         date = new Date(post.timestamp * 1000);
-        sectionName = (date.getYear()) + ":" + (date.getMonth());
-        if (date.getMonth() !== lastMonth) {
-          appendMonth("<div class=\"heading\">" + MONTHS[date.getMonth()] + " " + (date.getFullYear()) + "</div>", sectionName);
-        }
+        sectionName = "Tile List";
         ctx = createContext();
         ctx.date = {
           year: date.getYear(),
@@ -328,7 +325,7 @@
 
     currentOffset = 0;
     after = "";
-    limit = 20;
+    limit = 50;
 
     isScrolling = false;
 
