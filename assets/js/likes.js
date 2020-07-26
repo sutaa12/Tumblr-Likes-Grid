@@ -401,7 +401,24 @@
         isFinished = true;
         $("#loading").fadeOut(800);
       }
-      return ContentHelper.setContent(data.response.liked_posts);
+      var posts = [];
+       for (j = 0, len = data.response.liked_posts.length; j < len; j++) {
+           if(data.response.liked_posts[j].type == "photo")
+           {
+              for (i = 0, le = data.response.liked_posts[j].photos.length; i < le; i++) {
+                      var pho =  _.cloneDeep(data.response.liked_posts[j]);
+                      var p = pho.photos[i];
+                      pho.photos.splice(0);
+                      pho.photos.push(p);
+                      posts.push(pho);
+                  }
+           }
+           else
+           {
+               posts.push(data.response.liked_posts[j]);
+           }
+       }
+      return ContentHelper.setContent(posts);
     };
 
     failForLikes = function(data) {
