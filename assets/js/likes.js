@@ -27,7 +27,7 @@
   })();
 
   ContentHelper = (function() {
-    var COLUMNS, MIN_HEIGHT, MONTHS, MONTHS_SHORT, append, appendMonth, createContext, lastMonth, makeDate, makeTime, renderPartial, renderTemplate, sections, setContextForAnswer, setContextForAudio, setContextForChat, setContextForPhoto, setContextForQuote, setContextForVideo, templateCache;
+    var curOff, COLUMNS, MIN_HEIGHT, MONTHS, MONTHS_SHORT, append, appendMonth, createContext, lastMonth, makeDate, makeTime, renderPartial, renderTemplate, sections, setContextForAnswer, setContextForAudio, setContextForChat, setContextForPhoto, setContextForQuote, setContextForVideo, templateCache;
 
     function ContentHelper() {}
 
@@ -46,6 +46,7 @@
     templateCache = {};
 
     sections = {};
+    curOff = -1;
 
     ContentHelper.setContent = function(posts) {
       var ctx, date, j, len, post, results, sectionName, thumbnail;
@@ -57,9 +58,11 @@
       for (j = 0, len = posts.length; j < len; j++) {
         post = posts[j];
         date = new Date(post.timestamp * 1000);
-        sectionName = "Tile List";
-        if (date.getMonth() !== lastMonth) {
-          appendMonth("<div class=\"heading\">" + MONTHS[date.getMonth()] + " " + (date.getFullYear()) + "</div>", sectionName);
+        var page = window.Likes.currentOffset/200;
+        sectionName = "Tile List" + page;
+        if (currentOffset != page) {
+          appendMonth("<div class=\"heading\">" + curOff + "</div>", sectionName);
+          curOff = page;
         }
 
         ctx = createContext();
