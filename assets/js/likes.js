@@ -205,9 +205,18 @@
         img = sizes.length - 3 < 0 ? sizes.length - 1 : sizes.length - 3;
         img = sizes[img];
         thumbnail.url = img.url;
+        thumbnail.urls = [img];
+      for (j = 1, len = post.photos.length; j < len; j++) {
+        sizes = post.photos[j].alt_sizes;
+        img = sizes.length - 3 < 0 ? sizes.length - 1 : sizes.length - 3;
+        img = sizes[img];
+        thumbnail.urls.push(img);
+      }
+
         thumbnail.height = img.height;
         ctx.preview_url = post.photos[0].original_size.url;
         ctx.preview_urls = post.photos;
+        ctx.preview_urls.shift();
         return thumbnail.width = img.width;
       }
     };

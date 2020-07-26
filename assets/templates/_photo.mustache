@@ -1,5 +1,7 @@
 <a data-fancybox="gallery" href="{{preview_url}}">
-<img src="{{thumbnail.url}}" width="100%" />
+{{#thumbnail.urls}}
+<img src="{{url}}" width="100%" />
+{{/thumbnail.urls}}
 </a>
 {{#preview_urls}}
       {{#original_size}}
