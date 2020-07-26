@@ -119,7 +119,7 @@
           ctx.text = ctx.text.substring(0, 180) + " [...]";
         }
         lastMonth = date.getMonth();
-        results.push(append(renderTemplate("node", ctx), sectionName));
+        results.push(append(renderTemplate("node", ctx), sectionName, ctx.height));
       }
       return results;
     };
@@ -217,7 +217,7 @@
         thumbnail.urls.push(img);
       }
 
-        thumbnail.height = img.height;
+        thumbnail.height = thumbnail.urls.reduce((p, x) => p + x.height, 0);
         ctx.preview_url = post.photos[0].original_size.url;
         ctx.preview_urls = post.photos;
         ctx.preview_urls.shift();
@@ -293,18 +293,17 @@
       }
     };
 
-    append = function(html, sectionName) {
+    append = function(html, sectionName, height) {
       var col, node, nodes, section;
       section = sections[sectionName];
       nodes = section.find("div.brick");
       col = nodes.length % COLUMNS;
       node = $("<li class=\"stack\" style=\"display:none;\">");
       node.append(html);
-      var cols = $(section.find("ul.column"));
       var index = thumbSize.indexOf(Math.min(...thumbSize));
 
-      c[index].append(node[0]);
-      thumbSize[index] += html.offsetHeight;
+      $(section.find("ul.column")[index]).append(node);
+      thumbSize[index] += height;
       return node.fadeIn(600);
     };
 
