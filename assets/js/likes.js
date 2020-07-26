@@ -27,7 +27,7 @@
   })();
 
   ContentHelper = (function() {
-    var curOff, COLUMNS, MIN_HEIGHT, MONTHS, MONTHS_SHORT, append, appendMonth, createContext, lastMonth, makeDate, makeTime, renderPartial, renderTemplate, sections, setContextForAnswer, setContextForAudio, setContextForChat, setContextForPhoto, setContextForQuote, setContextForVideo, templateCache;
+    var thumbSize,curOff, COLUMNS, MIN_HEIGHT, MONTHS, MONTHS_SHORT, append, appendMonth, createContext, lastMonth, makeDate, makeTime, renderPartial, renderTemplate, sections, setContextForAnswer, setContextForAudio, setContextForChat, setContextForPhoto, setContextForQuote, setContextForVideo, templateCache;
 
     function ContentHelper() {}
 
@@ -47,6 +47,7 @@
 
     sections = {};
     curOff = -1;
+    thumbSize = [];
 
     ContentHelper.setContent = function(posts, currentOffset) {
       var ctx, date, j, len, post, results, sectionName, thumbnail;
@@ -280,8 +281,10 @@
         container = $("<div class=\"container\">");
         container.append(html);
         i = 0;
+        thumbSize = [];
         while (i < COLUMNS) {
           container.append($("<ul class=\"column\">"));
+          thumbSize.push(0);
           ++i;
         }
         section = container;
@@ -297,7 +300,11 @@
       col = nodes.length % COLUMNS;
       node = $("<li class=\"stack\" style=\"display:none;\">");
       node.append(html);
-      $(section.find("ul.column")[col]).append(node);
+      var cols = $(section.find("ul.column"));
+      var index = thumbSize.indexOf(Math.min(...thumbSize));
+
+      c[index].append(node[0]);
+      thumbSize[index] += html.offsetHeight;
       return node.fadeIn(600);
     };
 
@@ -404,24 +411,7 @@
         isFinished = true;
         $("#loading").fadeOut(800);
       }
-      var posts = [];
-       for (j = 0, len = data.response.liked_posts.length; j < len; j++) {
-           if(data.response.liked_posts[j].type == "photo")
-           {
-              for (i = 0, le = data.response.liked_posts[j].photos.length; i < le; i++) {
-                      var pho =  _.cloneDeep(data.response.liked_posts[j]);
-                      var p = pho.photos[i];
-                      pho.photos.splice(0);
-                      pho.photos.push(p);
-                      posts.push(pho);
-                  }
-           }
-           else
-           {
-               posts.push(data.response.liked_posts[j]);
-           }
-       }
-      return ContentHelper.setContent(posts, currentOffset);
+      return ContentHelper.setContent(data.response.liked_posts, currentOffset);
     };
 
     failForLikes = function(data) {
