@@ -58,6 +58,10 @@
         post = posts[j];
         date = new Date(post.timestamp * 1000);
         sectionName = "Tile List";
+        if (date.getMonth() !== lastMonth) {
+          appendMonth("<div class=\"heading\">" + MONTHS[date.getMonth()] + " " + (date.getFullYear()) + "</div>", sectionName);
+        }
+
         ctx = createContext();
         ctx.date = {
           year: date.getYear(),
