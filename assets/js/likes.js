@@ -122,6 +122,9 @@
         if (ctx.title && ctx.title.length > 210) {
           ctx.title = ctx.title.substring(0, 210);
         }
+        if (ctx.text.length == 0){
+          ctx.text += "テキストポストですが動画か画像のみっぽいです:( Text post, but video or image only."
+        }
         if (ctx.text.length > 180) {
           ctx.text = ctx.text.substring(0, 180) + " [...]";
         }
