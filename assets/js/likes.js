@@ -504,7 +504,13 @@
     Likes.startUp = function() {
       console.log("Tumblr Likes Grid, by Ben Fagin\nhttp://life.unquietcode.com\n\n");
       console.log("Initialize Oauth.js");
-      OAuth.initialize('epZ3ZbW2o20TLFHglXMahz2jWB4');
+      try{
+        OAuth.initialize('epZ3ZbW2o20TLFHglXMahz2jWB4');
+      }
+      catch(e){
+        // redirect to /likes
+        window.location = "";
+      }
       console.log("Get cached credentials");
       Likes.tumblr = OAuth.create("tumblr");
       setHeaderInfo();
