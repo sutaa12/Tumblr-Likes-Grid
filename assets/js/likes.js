@@ -512,7 +512,7 @@
       }
       console.log("Get cached credentials");
       Likes.tumblr = OAuth.create("tumblr");
-      if(!Likes,tumblr){
+      if(!Likes.tumblr){
         window.location = "";
       }
       setHeaderInfo();
