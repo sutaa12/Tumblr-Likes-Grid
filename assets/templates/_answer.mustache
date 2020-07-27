@@ -1,15 +1,16 @@
 {{#theAsker}}
 	<div class="title">{{theAsker}} asked...</div>
 {{/theAsker}}
-
-<div class="overprint nowrap">
-	<div class="question">
-		<span class="question">Q:</span>
-		{{ theQuestion }}
+<a data-fancybox="" data-type="iframe" data-src="{{url}}}" href="javascript:;">
+	<div class="overprint nowrap">
+		<div class="question">
+			<span class="question">Q:</span>
+			{{ theQuestion }}
+		</div>
+		<p>&nbsp;</p>
+		<div class="answer">
+			<span class="answer">A:</span>
+			{{ theAnswer }}
+		</div>
 	</div>
-	<p>&nbsp;</p>
-	<div class="answer">
-		<span class="answer">A:</span>
-		{{ theAnswer }}
-	</div>
-</div>
+</a>
