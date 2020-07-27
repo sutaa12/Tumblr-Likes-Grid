@@ -59,8 +59,9 @@
       for (j = 0, len = posts.length; j < len; j++) {
         post = posts[j];
         date = new Date(post.timestamp * 1000);
-        var page = Math.round(currentOffset/250)+1;
-        sectionName = "Tile List Page " + page;
+        var pageLimit = 250;
+        var page = Math.round(currentOffset/pageLimit)+1;
+        sectionName = "Tile List Page " + page + "(" + Math.max((page-1)*pageLimit, 0) + "~" + page*pageLimit + "Posts)";
         if (curOff != page) {
           appendMonth("<div class=\"heading\">" + sectionName + "</div>", sectionName);
           curOff = page;
