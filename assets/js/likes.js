@@ -27,7 +27,7 @@
   })();
 
   ContentHelper = (function() {
-    var thumbSize,curOff, COLUMNS, MIN_HEIGHT, MONTHS, MONTHS_SHORT, append, appendMonth, createContext, lastMonth, makeDate, makeTime, renderPartial, renderTemplate, sections, setContextForAnswer, setContextForAudio, setContextForChat, setContextForPhoto, setContextForQuote, setContextForVideo, templateCache;
+    var thumbSize,curOff, COLUMNS, MIN_HEIGHT, MONTHS, MONTHS_SHORT, append, appendMonth, createContext, lastMonth, makeDate, makeTime, renderPartial, renderTemplate, sections, setContextForText, setContextForAnswer, setContextForAudio, setContextForChat, setContextForPhoto, setContextForQuote, setContextForVideo, templateCache;
 
     function ContentHelper() {}
 
@@ -104,6 +104,10 @@
             break;
           case "answer":
             setContextForAnswer(post, ctx);
+            break;
+          case "text":
+            setContextForText(post,ctx);
+            break;
         }
         thumbnail = ctx.thumbnail;
         if (thumbnail && thumbnail.height && thumbnail.height < ctx.height) {
@@ -193,6 +197,10 @@
       ctx.theQuestion = post.question || "";
       ctx.theAnswer = post.answer || "";
       return ctx.theAsker = post.asking_name || "";
+    };
+
+    setContextForText = function(post, ctx) {
+      return ctx.body = post.body;
     };
 
     setContextForQuote = function(post, ctx) {
@@ -489,7 +497,7 @@
         if (isFinished) {
           return;
         }
-        if (win.scrollTop() >= $(document).height() - win.height() - 200) {
+        if (win.scrollTop() >= $(document).height() - win.height() - 400) {
           if (isScrolling) {
             return;
           }
@@ -516,7 +524,7 @@
         window.location = "../";
       }
       setHeaderInfo();
-      getLikes(2);
+      getLikes(4);
       return scrollWatch();
     };
 
