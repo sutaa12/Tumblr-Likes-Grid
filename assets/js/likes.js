@@ -125,6 +125,9 @@
         if (ctx.text.length > 180) {
           ctx.text = ctx.text.substring(0, 180) + " [...]";
         }
+        else if (ctx.text.length < 180) {
+          ctx.text += "　".repeat(180 - ctx.text.length);
+        }
         lastMonth = date.getMonth();
         results.push(append(renderTemplate("node", ctx), sectionName, height));
       }

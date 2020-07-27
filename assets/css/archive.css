@@ -398,7 +398,8 @@ button.chrome[disabled] {
 }
 
 #content .brick .overprint.nowrap {
-	width: 105px
+	width: 105px;
+	word-break: break-all;
 }
 
 #content .brick .overprint .serif {
