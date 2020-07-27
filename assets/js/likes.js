@@ -508,11 +508,13 @@
         OAuth.initialize('epZ3ZbW2o20TLFHglXMahz2jWB4');
       }
       catch(e){
-        // redirect to /likes
         window.location = "";
       }
       console.log("Get cached credentials");
       Likes.tumblr = OAuth.create("tumblr");
+      if(!Likes,tumblr){
+        window.location = "";
+      }
       setHeaderInfo();
       getLikes(2);
       return scrollWatch();
