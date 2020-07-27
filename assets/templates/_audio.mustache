@@ -1,4 +1,4 @@
-<a data-fancybox="gallery" data-type="iframe" data-src="{{url}}}" href="javascript:;">
+<a data-fancybox="gallery" data-type="iframe" data-src="{{url}}" href="javascript:;">
 {{#thumbnail}}
 	<img src="{{thumbnail}}" width="100%"/>
 {{/thumbnail}}
@@ -9,7 +9,7 @@
   <div class="title popoutText">
 {{/thumbnail}}
 	<img src="images/archive_listen_icon.png" class="listen_icon" width="8" height="9" alt="Listen"/>
-	{{text}}
+	{{{fullText}}}
 </div>
 
 {{^thumbnail}}

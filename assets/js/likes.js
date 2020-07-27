@@ -82,6 +82,7 @@
         ctx.noteCount = post.note_count;
         ctx.caption = post.caption || "";
         ctx.text = post.body || "";
+        ctx.fullText = ctx.text;
         ctx.title = post.title || null;
         ctx.height = 125;
         var height = ctx.height;
@@ -204,7 +205,7 @@
     };
 
     setContextForQuote = function(post, ctx) {
-      ctx.text = post.text;
+      ctx.fullText = ctx.text = post.text;
       return ctx.source = post.source;
     };
 
@@ -237,7 +238,7 @@
 
     setContextForAudio = function(post, ctx) {
       var info;
-      ctx.text = post.caption;
+      ctx.fullText = ctx.text = post.caption;
       info = "";
       if (post.artist && post.artist.length > 0) {
         if (post.track_name && post.track_name.length > 0) {
