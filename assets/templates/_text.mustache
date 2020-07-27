@@ -1,10 +1,10 @@
 {{#title}}
 	<div class="title">{{{title}}}</div>
 {{/title}}
-<div style="display: none; max-width: 800px;" id="hidden-content" class="" data-selectable="true">
+<div style="display: none; max-width: 800px;" id="hidden-content{{id}}" class="" data-selectable="true">
 	{{text}}
 </div>
-<a data-fancybox="" data-src="#hidden-content" href="javascript:;">
+<a data-fancybox="" data-src="#hidden-content{{id}}" href="javascript:;">
 	<div class="overprint nowrap">
 		{{text}}
 	</div>
