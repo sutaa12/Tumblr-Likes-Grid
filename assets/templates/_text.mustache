@@ -1,11 +1,11 @@
 {{#title}}
 	<div class="title">{{{title}}}</div>
 {{/title}}
-<a data-fancybox data-src="#selectableModal" href="javascript:;" class="btn btn-primary">
+<div style="display: none; max-width: 800px;" id="hidden-content" class="" data-selectable="true">
+	{{text}}
+</div>
+<a data-fancybox="" data-src="#hidden-content" href="javascript:;">
 	<div class="overprint nowrap">
 		{{text}}
 	</div>
 </a>
-<div style="display: none;max-width:500px;" id="selectableModal">
-	{{text}}
-</div>
