@@ -1,10 +1,12 @@
-<a data-fancybox="gallery" href="{{preview_url}}">
-{{#thumbnail.urls}}
-<img src="{{url}}" width="100%" />
-{{/thumbnail.urls}}
-</a>
+<div style="display: none;" id="hidden-content{{id}}" class="" data-selectable="true">
 {{#preview_urls}}
       {{#original_size}}
-            <a data-fancybox="gallery" href="{{url}}"></a>
+            <img src="{{url}}"></img>
       {{/original_size}}
 {{/preview_urls}}
+</div>
+<a data-fancybox="gallery" data-src="#hidden-content{{id}}" href="javascript:;">
+    {{#thumbnail.urls}}
+    <img src="{{url}}" width="100%" />
+    {{/thumbnail.urls}}
+</a>
