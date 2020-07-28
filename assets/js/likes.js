@@ -228,7 +228,7 @@
         img = sizes[img];
         thumbnail.url = img.url;
         thumbnail.urls = [img];
-      for (j = 1, len = post.photos.length; j < len; j++) {
+      for (j = 0, len = post.photos.length; j < len; j++) {
         sizes = post.photos[j].alt_sizes;
         img = sizes.length - 3 < 0 ? sizes.length - 1 : sizes.length - 3;
         img = sizes[img];
