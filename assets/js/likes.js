@@ -235,7 +235,7 @@
         ctx.preview_url = post.photos[0].original_size.url;
         ctx.preview_urls = post.photos;
         ctx.sourceLink = post.source_url;
-        ctx.sourceTtile = post.source_title;
+        ctx.sourceTitle = post.source_title;
         return thumbnail.width = img.width;
       }
     };
