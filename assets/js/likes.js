@@ -223,11 +223,7 @@
       };
       thumbnail = ctx.thumbnail;
       if (post.photos.length > 0) {
-        sizes = post.photos[0].alt_sizes;
-        img = sizes.length - 3 < 0 ? sizes.length - 1 : sizes.length - 3;
-        img = sizes[img];
-        thumbnail.url = img.url;
-        thumbnail.urls = [img];
+        thumbnail.urls = [];
       for (j = 0, len = post.photos.length; j < len; j++) {
         sizes = post.photos[j].alt_sizes;
         img = sizes.length - 3 < 0 ? sizes.length - 1 : sizes.length - 3;
@@ -238,7 +234,8 @@
         thumbnail.height = thumbnail.urls.reduce((p, x) => p + x.height, 0);
         ctx.preview_url = post.photos[0].original_size.url;
         ctx.preview_urls = post.photos;
-        ctx.preview_urls.shift();
+        ctx.sourceLink = post.source_url;
+        ctx.sourceTtile = post.source_title;
         return thumbnail.width = img.width;
       }
     };

@@ -1,13 +1,14 @@
 <div style="display: none;" id="hidden-content{{id}}" class="" data-selectable="true">
-    {{{text}}}
+<a href="{{sourceLink}}">{{sourceTitle}}</a>
+
 {{#preview_urls}}
       {{#original_size}}
-            <img src="{{url}}" width="100%"></img>
+            <img src="{{url}}"></img>
       {{/original_size}}
 {{/preview_urls}}
 </div>
 <a data-fancybox="gallery" data-src="#hidden-content{{id}}" href="javascript:;">
     {{#thumbnail.urls}}
-    <img src="{{url}}" width="100%" />
+        <img src="{{url}}" width="100%" />
     {{/thumbnail.urls}}
 </a>
