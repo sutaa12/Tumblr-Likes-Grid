@@ -1,6 +1,9 @@
 <div class="play_overlay"></div>
-
-<a data-fancybox="gallery" href="{{preview_url}}">
+<div style="display: none;" id="hidden-content{{id}}" class="" data-selectable="true">
+{{{caption}}}<br/>
+<a href="{{sourceLink}}" target="_blank" rel="noopener">{{sourceTitle}}</a><br/>
+<video src="{{preview_url}}"></video><br/>
+</div>
 
 {{#frames}}
 	<img src="{{url}}"/>

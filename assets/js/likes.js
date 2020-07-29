@@ -287,7 +287,10 @@
       thumbnail.height = post.thumbnail_height;
       thumbnail.width = post.thumbnail_width;
       ctx.preview_url = post.video_url;
-      return ctx.thumbnail = thumbnail;
+      ctx.sourceLink = post.source_url;
+      ctx.sourceTitle = post.source_title;
+      ctx.caption = post.caption;
+    return ctx.thumbnail = thumbnail;
     };
 
     appendMonth = function(html, sectionName) {
